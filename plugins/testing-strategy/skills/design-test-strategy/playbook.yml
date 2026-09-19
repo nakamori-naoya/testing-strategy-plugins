@@ -1,0 +1,47 @@
+# design-test-strategy — 対象リポジトリの品質リスクからテスト戦略Markdownを1本作る。
+version: 2
+name: design-test-strategy
+description: 対象リポジトリを調査し、利用者と合意した品質リスクからテストレベル、サイズ、重複排除、資料点検、CI順序を設計する。
+inputs: [target_repository, request, references, document_destination]
+instructions:
+  execution:
+    directive: 同じagentがstepsを上から順に実行し、調査文脈と合意を保持したまま戦略を保存する
+requires:
+  - {plugin: grill, marketplace: grill}
+  - {plugin: write-doc, marketplace: write-doc}
+steps:
+  - id: fix-target-and-rules
+    agent_work: invoking_agent
+    purpose: 対象リポジトリ、適用規約、references、保存先を固定する
+    needs: [target_repository, request, references, document_destination]
+  - id: investigate-repository
+    agent_work: invoking_agent
+    purpose: 要件、設計資料、コード、テスト、依存サービス、公開インターフェース、CIを調べ、観測した現状と未作成を分ける
+  - id: derive-quality-risks
+    agent_work: invoking_agent
+    purpose: 利用者・業務・状態・連携・開発フィードバックに起きる失敗から品質リスクと最小の観測境界を導く
+  - id: assess-current-portfolio-and-documents
+    agent_work: invoking_agent
+    purpose: 既存テストを責務と依存範囲で分類し、根拠資料の不足、責務混在、重複を点検する
+  - id: settle-strategy-decisions
+    playbook: grill
+    purpose: 調べても決まらず、答えで品質リスク、テストダブルの境界、残すE2E、フィードバック順、対象外が変わる問いを推奨付きで解消する
+    needs: [request, references]
+    provides: [decisions, open_questions]
+  - id: design-target-portfolio
+    agent_work: invoking_agent
+    purpose: 決定と未決を反映し、品質リスクごとの主担当、Small・Medium・Large、重複排除、境界シナリオ方針、CI順序を設計する
+    needs: [decisions, open_questions]
+  - id: compose-strategy-text
+    agent_work: invoking_agent
+    purpose: 現状と目標、根拠と仮説を分け、変更判断に使えるテスト戦略本文をインメモリで組み立てる
+    provides: [strategy_document_text]
+  - id: save-strategy
+    playbook: write-doc
+    purpose: 戦略本文をkind textのmaterialとして渡し、document_destinationへMarkdown正本を1本保存する
+    needs: [strategy_document_text, document_destination, references]
+    provides: [strategy_document_path]
+  - id: read-back-and-evaluate
+    agent_work: invoking_agent
+    purpose: 保存した正本を読み戻し、各品質リスクの主担当、責務重複、サイズ、現状と目標、仮説、根拠の対応を意味評価する
+    needs: [strategy_document_path]
