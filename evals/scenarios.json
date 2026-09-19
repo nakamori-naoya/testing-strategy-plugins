@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "documents-only-repository",
+      "skill": "../plugins/testing-strategy/skills/design-test-strategy/SKILL.md",
+      "messages": [{"role": "user", "content": "まだ設計資料しかないリポジトリのテスト戦略を作って。"}],
+      "criteria": [
+        {"id": "separate-current-and-target", "meaning": "コード、テスト、CIを未作成と記録し、存在する現状として補わずに目標戦略を設計する"},
+        {"id": "continue-with-documents", "meaning": "資料しかないことを停止理由にせず、資料の十分性と目標ポートフォリオを返す"}
+      ]
+    },
+    {
+      "id": "mock-heavy-repository",
+      "skill": "../plugins/testing-strategy/skills/design-test-strategy/SKILL.md",
+      "messages": [{"role": "user", "content": "制御できるストレージも内部サービスも全部モックしている。今のまま高速に保ちたい。"}],
+      "criteria": [
+        {"id": "classical-default", "meaning": "制御可能なストレージと内部サービスを実物へ戻せるかを評価し、速度だけでモック維持を既定にしない"},
+        {"id": "settle-exception", "meaning": "実物利用を妨げる制約が成果を変える場合だけ、観測事実と推奨を添えてgrillへ渡す"}
+      ]
+    },
+    {
+      "id": "duplicated-bdd",
+      "skill": "../plugins/testing-strategy/skills/design-test-strategy/SKILL.md",
+      "messages": [{"role": "user", "content": "業務知識とデータモデルに細かいBDDが大量にあり、E2Eにも同じ境界値がある。"}],
+      "criteria": [
+        {"id": "classify-before-remove", "meaning": "既存BDDを即時削除せず、意味の説明、業務判断、永続化、公開インターフェース、E2Eへ価値で仕分ける"},
+        {"id": "push-down-duplication", "meaning": "境界値の網羅を小さい境界へ移し、E2Eへ残す接続上の理由を書く"}
+      ]
+    },
+    {
+      "id": "abstract-boundary-scenario",
+      "skill": "../plugins/testing-strategy/skills/design-test-strategy/SKILL.md",
+      "messages": [{"role": "user", "content": "境界シナリオには『成立条件を満たさない入力を拒否する』とだけ書けばよい？"}],
+      "criteria": [
+        {"id": "concrete-partitions", "meaning": "外した条件、具体値、対照となる有効値を要求し、同値クラスと境界値を表へ置く方針を返す"},
+        {"id": "stateful-scenarios", "meaning": "再送、順序、競合など複数操作で差が出るものをシナリオへ分ける"}
+      ]
+    },
+    {
+      "id": "implementation-only-request",
+      "skill": "../plugins/testing-strategy/skills/design-test-strategy/SKILL.md",
+      "messages": [{"role": "user", "content": "このskillでテストコードを全部実装して。戦略資料はいらない。"}],
+      "criteria": [
+        {"id": "stop-out-of-scope", "meaning": "戦略を作る目的が無いため責務外として停止し、テストコードを生成しない"},
+        {"id": "return-restart-condition", "meaning": "リポジトリ全体の戦略を作る依頼と保存先があれば再開できると返す"}
+      ]
+    },
+    {
+      "id": "size-boundary",
+      "skill": "../plugins/testing-strategy/skills/design-test-strategy/SKILL.md",
+      "messages": [{"role": "user", "content": "ネットワーク入口のテストだからLarge、実ストレージのテストだからUnitでいいよね。"}],
+      "criteria": [
+        {"id": "dependency-based-size", "meaning": "テスト名ではなく依存範囲で分類し、単一マシンの実ストレージはMedium、単一プロセスの入口テストはSmallになり得ると区別する"},
+        {"id": "no-time-only-classification", "meaning": "実行時間だけをサイズの定義にしない"}
+      ]
+    },
+    {
+      "id": "technology-neutral",
+      "skill": "../plugins/testing-strategy/skills/design-test-strategy/SKILL.md",
+      "messages": [{"role": "user", "content": "RDBもHTTP APIも持たず、ファイルと定期ジョブだけのリポジトリです。"}],
+      "criteria": [
+        {"id": "adapt-to-observed-boundaries", "meaning": "特定のDBや通信方式を要求せず、ファイル永続化とジョブ境界に責務を対応させる"},
+        {"id": "omit-inapplicable-levels", "meaning": "存在しないAPIレベルを表を埋めるために作らない"}
+      ]
+    }
+  ]
+}

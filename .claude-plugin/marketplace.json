@@ -1,0 +1,11 @@
+{
+  "name": "testing-strategy",
+  "owner": {"name": "NaoyaNakamori"},
+  "description": "対象リポジトリの品質リスクからテスト戦略を設計する単一package marketplace",
+  "plugins": [{
+    "name": "testing-strategy",
+    "source": "./plugins/testing-strategy",
+    "description": "リポジトリ全体のテスト戦略を設計するskillを提供する",
+    "version": "1.0.0"
+  }]
+}

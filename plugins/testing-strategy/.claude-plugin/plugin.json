@@ -1,0 +1,21 @@
+{
+  "name": "testing-strategy",
+  "version": "1.0.0",
+  "description": "対象リポジトリを調査し、品質リスクからテスト戦略を設計する",
+  "author": {"name": "NaoyaNakamori"},
+  "skills": ["./skills/design-test-strategy"],
+  "interface": {
+    "displayName": "テスト戦略設計",
+    "shortDescription": "品質リスクからリポジトリ全体のテスト戦略を作る",
+    "longDescription": "コード、設計資料、既存テスト、CIを調べ、利用者との合意を経て、テストレベル、Small・Medium・Large、重複排除、境界シナリオ、CI順序を一つの戦略へまとめます。",
+    "developerName": "NaoyaNakamori",
+    "category": "Developer Tools",
+    "capabilities": ["Skills", "Interactive", "Write"],
+    "defaultPrompt": [
+      "このリポジトリのテスト戦略を設計して。",
+      "既存のテストと設計資料を点検して、責務分担を決めて。",
+      "古典派を基本にSmall・Medium・LargeとCI順序を設計して。"
+    ]
+  },
+  "metadata": {"harness": {"marketplace": "testing-strategy", "contractVersion": 1}}
+}
