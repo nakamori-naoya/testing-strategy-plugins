@@ -1,0 +1,48 @@
+# design-api-test-scenarios — プログラム境界の具体的なテストシナリオMarkdownを1本作る。
+version: 2
+name: design-api-test-scenarios
+description: 確定済みテスト戦略から、APIを含むプログラム境界の具体例、観測結果、テスト配分、意図した省略を設計する。
+inputs: [target_repository, request, test_strategy_path, scope, references, document_destination]
+instructions:
+  execution:
+    directive: 同じagentがstepsを上から順に実行し、境界の調査文脈と配分判断を保持したままシナリオを保存する
+requires:
+  - {plugin: grill, marketplace: grill}
+  - {plugin: write-doc, marketplace: write-doc}
+steps:
+  - id: fix-target-and-rules
+    agent_work: invoking_agent
+    purpose: 対象、戦略、scope、適用規約、references、保存先を固定する
+    needs: [target_repository, request, test_strategy_path, scope, references, document_destination]
+  - id: map-coverage
+    skill: map-test-coverage
+    purpose: 品質リスク、既存証拠、残余リスク、最小の担当レベル、サイズ、重複排除を対応付ける
+    needs: [target_repository, test_strategy_path, scope, references]
+    provides: [coverage_map, coverage_gaps, coverage_status]
+  - id: investigate-boundaries
+    agent_work: invoking_agent
+    purpose: 対象境界の定義、コード、主体、状態変化、外部表現、再試行意味を調べる
+    needs: [coverage_map]
+    provides: [boundary_findings]
+  - id: settle-scenario-decisions
+    playbook: grill
+    purpose: 答えで期待結果、対象境界、互換性、再試行意味、主担当レベルが変わる未決だけを解消する
+    needs: [request, scope, references, coverage_map, boundary_findings]
+    provides: [decisions, open_questions]
+  - id: design-scenarios
+    agent_work: invoking_agent
+    purpose: 入力区分、状態系列、具体的な観測結果、テスト配分、意図した省略、定義との同期を設計する
+    needs: [coverage_map, boundary_findings, decisions, open_questions]
+  - id: compose-document
+    agent_work: invoking_agent
+    purpose: 抽象入力を残さず、具体値と最小の担当レベルを持つシナリオ本文を組み立てる
+    provides: [scenario_document_text]
+  - id: save-document
+    playbook: write-doc
+    purpose: シナリオ本文をdocument_destinationへMarkdown正本として保存する
+    needs: [scenario_document_text, document_destination, references]
+    provides: [scenario_document_path]
+  - id: read-back-and-evaluate
+    agent_work: invoking_agent
+    purpose: 保存した正本を読み戻し、具体性、観測可能性、最小配置、重複排除、同期方針を意味評価する
+    needs: [scenario_document_path]
