@@ -1,0 +1,48 @@
+# plan-exploratory-testing — 残余リスクに基づく探索的テスト計画Markdownを1本作る。
+version: 2
+name: plan-exploratory-testing
+description: 既存自動テスト後の未知へ探索を配分し、発見を再現、自動チェック、TDDによる修正へ渡す計画を作る。
+inputs: [target_repository, request, test_strategy_path, scope, references, document_destination]
+instructions:
+  execution:
+    directive: 同じagentがstepsを上から順に実行し、残余リスクと最小配置の判断を保持したまま計画を保存する
+requires:
+  - {plugin: grill, marketplace: grill}
+  - {plugin: write-doc, marketplace: write-doc}
+steps:
+  - id: fix-target-and-rules
+    agent_work: invoking_agent
+    purpose: 対象、戦略、scope、適用規約、references、保存先を固定する
+    needs: [target_repository, request, test_strategy_path, scope, references, document_destination]
+  - id: map-coverage
+    skill: map-test-coverage
+    purpose: 品質リスク、既存証拠、残余リスク、最小の担当レベル、サイズ、重複排除を対応付ける
+    needs: [target_repository, test_strategy_path, scope, references]
+    provides: [coverage_map, coverage_gaps, coverage_status]
+  - id: investigate-unknowns
+    agent_work: invoking_agent
+    purpose: 変更差分、意図した省略、過去障害、状態系列、診断可能性から探索価値のある未知を調べる
+    needs: [coverage_map, coverage_gaps]
+    provides: [exploration_findings]
+  - id: settle-exploration-decisions
+    playbook: grill
+    purpose: 答えでmission、残余リスク、環境、oracle、引継ぎ先が変わる未決だけを解消する
+    needs: [request, scope, references, coverage_map, exploration_findings]
+    provides: [decisions, open_questions]
+  - id: design-plan
+    agent_work: invoking_agent
+    purpose: charter、heuristics、oracle、証拠、発見分類、再現、自動チェック、TDDへの引継ぎを設計する
+    needs: [coverage_map, coverage_gaps, exploration_findings, decisions, open_questions]
+  - id: compose-document
+    agent_work: invoking_agent
+    purpose: 既知の回帰を繰り返さず、残余リスクと後工程への接続を持つ計画本文を組み立てる
+    provides: [plan_document_text]
+  - id: save-document
+    playbook: write-doc
+    purpose: 計画本文をdocument_destinationへMarkdown正本として保存する
+    needs: [plan_document_text, document_destination, references]
+    provides: [plan_document_path]
+  - id: read-back-and-evaluate
+    agent_work: invoking_agent
+    purpose: 保存した正本を読み戻し、残余リスク、探索性、再現証拠、最小配置、Redから修正への接続を意味評価する
+    needs: [plan_document_path]
