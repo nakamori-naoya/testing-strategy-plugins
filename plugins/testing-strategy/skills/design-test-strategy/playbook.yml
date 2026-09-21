@@ -38,10 +38,10 @@ steps:
     provides: [strategy_document_text]
   - id: save-strategy
     playbook: write-doc
-    purpose: 戦略本文をkind textのmaterialとして渡し、document_destinationへMarkdown正本を1本保存する
+    purpose: 戦略本文をkind textのmaterialとして渡し、document_destinationへMarkdownの正式な定義を1本保存する
     needs: [strategy_document_text, document_destination, references]
     provides: [strategy_document_path]
   - id: read-back-and-evaluate
     agent_work: invoking_agent
-    purpose: 保存した正本を読み戻し、各品質リスクの主担当、責務重複、サイズ、現状と目標、仮説、根拠の対応を意味評価する
+    purpose: 保存した正式な定義を読み戻し、各品質リスクの主担当、責務重複、サイズ、現状と目標、仮説、根拠の対応を意味評価する
     needs: [strategy_document_path]
