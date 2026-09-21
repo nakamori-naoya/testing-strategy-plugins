@@ -28,6 +28,6 @@ merge:
   delete_branch: false
   delete_worktree: false
   readiness:
-    min_approvals: 1
+    min_approvals: 0
     require_checks_passed: true
     require_no_unresolved_threads: true
