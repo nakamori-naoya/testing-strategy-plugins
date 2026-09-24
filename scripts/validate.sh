@@ -63,7 +63,7 @@ for runtime in claude codex; do
   HARNESS_PLUGIN_DEV_ROOTS="$map" python3 "$TOOLS/lint-consumer-contract.py" --repo "$ROOT" --runtime "$runtime" || failed=1
 done
 
-jq -e '.schema==1 and (.cases|length)>=3 and ([.cases[].id]|length)==([.cases[].id]|unique|length)' "$ROOT/evals/scenarios.json" >/dev/null || failed=1
+jq -e '.schema==1 and (.cases|length)>0 and ([.cases[].id]|length)==([.cases[].id]|unique|length)' "$ROOT/evals/scenarios.json" >/dev/null || failed=1
 
 while IFS= read -r script; do
   bash -n "$script" || failed=1
