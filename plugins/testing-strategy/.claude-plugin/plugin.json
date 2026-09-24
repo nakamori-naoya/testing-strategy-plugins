@@ -1,8 +1,10 @@
 {
   "name": "testing-strategy",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "品質リスクからテスト戦略、境界・E2Eシナリオ、探索計画を設計する",
-  "author": {"name": "NaoyaNakamori"},
+  "author": {
+    "name": "NaoyaNakamori"
+  },
   "skills": [
     "./skills/design-test-strategy",
     "./skills/design-api-test-scenarios",
@@ -15,7 +17,11 @@
     "longDescription": "コード、設計資料、既存テスト、CIを調べ、テスト戦略、プログラム境界シナリオ、E2Eシナリオ、探索的テスト計画を作ります。",
     "developerName": "NaoyaNakamori",
     "category": "Developer Tools",
-    "capabilities": ["Skills", "Interactive", "Write"],
+    "capabilities": [
+      "Skills",
+      "Interactive",
+      "Write"
+    ],
     "defaultPrompt": [
       "このリポジトリのテスト戦略を設計して。",
       "既存のテストと設計資料を点検して、責務分担を決めて。",
@@ -29,7 +35,9 @@
     "harness": {
       "marketplace": "testing-strategy",
       "contractVersion": 1,
-      "internalPlugins": {"map-test-coverage": "./internal/map-test-coverage"}
+      "internalPlugins": {
+        "map-test-coverage": "./internal/map-test-coverage"
+      }
     }
   }
 }

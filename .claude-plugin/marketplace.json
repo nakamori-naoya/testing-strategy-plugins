@@ -1,11 +1,15 @@
 {
   "name": "testing-strategy",
-  "owner": {"name": "NaoyaNakamori"},
+  "owner": {
+    "name": "NaoyaNakamori"
+  },
   "description": "品質リスクからテスト戦略、境界・E2Eシナリオ、探索計画を設計する単一package marketplace",
-  "plugins": [{
-    "name": "testing-strategy",
-    "source": "./plugins/testing-strategy",
-    "description": "リポジトリ全体のテスト戦略と具体的なテスト設計資料を作るskillを提供する",
-    "version": "1.1.0"
-  }]
+  "plugins": [
+    {
+      "name": "testing-strategy",
+      "source": "./plugins/testing-strategy",
+      "description": "リポジトリ全体のテスト戦略と具体的なテスト設計資料を作るskillを提供する",
+      "version": "1.2.0"
+    }
+  ]
 }
