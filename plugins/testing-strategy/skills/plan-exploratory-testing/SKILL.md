@@ -67,6 +67,8 @@ description: 確定済みテスト戦略、既存の自動テスト証拠、変�
 
 計画には、Mission、根拠リスク、Charter、Setup、Heuristics、Oracle、Evidence、Finding disposition、Reproduction、Automation handoff、Debrief、Stopを含める。
 
+本文の書き方は、`write-doc` が公開の資料として宣言している「書くときの規範」（公開入口 `write-doc` の `references/writing-norms.md`）に従う。計画に含める中身は、名前を見出しとして並べて欄を埋める雛形ではない。charterごとに見出しを立て、何を試し、なぜそのリスクを選び、何を見たら止めるかを段落で書く。表は、発見の扱いの区分のように同じ属性を三つ以上で比べる箇所だけに使う。
+
 発見記録には、元のcharter、環境と初期状態、具体入力、操作列、実際の結果、期待する結果と根拠、再現頻度、再現した条件、再現しなかった条件、関連するログや時刻を残すよう要求する。
 
 ### 7. 後工程への判定を設計する
