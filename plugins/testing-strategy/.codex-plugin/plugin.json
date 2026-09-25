@@ -34,7 +34,6 @@
   "metadata": {
     "harness": {
       "marketplace": "testing-strategy",
-      "contractVersion": 1,
       "internalPlugins": {
         "map-test-coverage": "./internal/map-test-coverage"
       }
