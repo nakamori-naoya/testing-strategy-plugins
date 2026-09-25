@@ -9,7 +9,7 @@
       "name": "testing-strategy",
       "source": "./plugins/testing-strategy",
       "description": "リポジトリ全体のテスト戦略と具体的なテスト設計資料を作るskillを提供する",
-      "version": "1.2.1"
+      "version": "1.3.0"
     }
   ]
 }
