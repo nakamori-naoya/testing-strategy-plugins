@@ -1,4 +1,4 @@
-> 作業を始める前に、workspace規約入口 `/Users/naoya-nakamoriq/Documents/Github/harness-pluginsv2/AGENTS.md` を読み、そこから指定される共通規約とこのrepository固有の規則を適用する。
+> 共通の規約は /Users/naoya-nakamoriq/Documents/Github/harness-pluginsv2/AGENTS.md にある。ここには、この repository だけの規則を置く。
 
 # AGENTS.md
 
@@ -14,8 +14,3 @@
 - 探索または運用で見つかった欠陥は、発見時の高水準な操作をそのまま固定せず、同じ失敗を再現できる最小の担当レベルへ下げて自動チェックへ渡す。
 - 利用者へ問う場面は公開playbook `grill`へ委ねる。成果物の保存は公開playbook `write-doc`へ委ねる。両者の内部実装へ依存しない。
 - 対象リポジトリ固有の値、層名、保存先、テストフレームワーク、時間上限を既定値として埋め込まない。
-- 変更後は`bash scripts/validate.sh`と、workspace rootの`bash scripts/validate.sh <このrepositoryの絶対path>`を実行する。
-
-## 検査スクリプトは、意味が一意に決まることだけを判定する
-
-このrepositoryの検査スクリプト（validate、lint、verify、checkなど、名前を問わない）が判定してよいのは、ファイルや見出しの有無、識別子や版の一致、宣言と配置の対応、禁止された書き方の有無のように、入力と基準資料から意味が決定論的に一意に決まることだけである。読んで解釈しないと決まらないことや、件数や語の出現のような品質の代わりの指標は判定せず、エージェントが読んで評価する（意味評価）。判定が一意に決まることを宣言できない検査は作らず、詳しい条件は `/Users/naoya-nakamoriq/Documents/Github/harness-pluginsv2/.agents/rules/deterministic-validation.md` に従う。
