@@ -25,7 +25,7 @@ steps:
     purpose: 既存テストを責務と依存範囲で分類し、根拠資料の不足、責務混在、重複を点検する
   - id: settle-strategy-decisions
     playbook: grill
-    purpose: 調べても決まらず、答えで品質リスク、テストダブルの境界、残すE2E、フィードバック順、対象外が変わる問いを推奨付きで解消する
+    purpose: 調べても決まらず、答えで品質リスク、差し替える境界、残すE2E、フィードバック順、対象外が変わる問いを推奨付きで解消する
     needs: [request, references]
     provides: [decisions, open_questions]
   - id: design-target-portfolio
@@ -38,10 +38,10 @@ steps:
     provides: [strategy_document_text]
   - id: save-strategy
     playbook: write-doc
-    purpose: 戦略本文をkind textのmaterialとして渡し、document_destinationへMarkdownの正式な定義を1本保存する
+    purpose: 戦略本文をkind textのmaterialとして渡し、document_destinationへMarkdown 1本として保存する
     needs: [strategy_document_text, document_destination, references]
     provides: [strategy_document_path]
   - id: read-back-and-evaluate
     agent_work: invoking_agent
-    purpose: 保存した正式な定義を読み戻し、各品質リスクの主担当、責務重複、サイズ、現状と目標、仮説、根拠の対応を意味評価する
+    purpose: 保存した資料を読み戻し、各品質リスクの主担当、責務重複、サイズ、現状と目標、仮説、根拠の対応を意味評価する
     needs: [strategy_document_path]
