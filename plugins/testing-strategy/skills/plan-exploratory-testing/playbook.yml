@@ -39,10 +39,10 @@ steps:
     provides: [plan_document_text]
   - id: save-document
     playbook: write-doc
-    purpose: 計画本文をdocument_destinationへMarkdownの正式な定義として保存する
+    purpose: 計画本文をdocument_destinationへMarkdown 1本として保存する
     needs: [plan_document_text, document_destination, references]
     provides: [plan_document_path]
   - id: read-back-and-evaluate
     agent_work: invoking_agent
-    purpose: 保存した正式な定義を読み戻し、残余リスク、探索性、再現証拠、最小配置、Redから修正への接続を意味評価する
+    purpose: 保存した資料を読み戻し、残余リスク、探索性、再現証拠、最小配置、Redから修正への接続を意味評価する
     needs: [plan_document_path]
