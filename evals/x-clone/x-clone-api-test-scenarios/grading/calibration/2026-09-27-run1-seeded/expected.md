@@ -10,7 +10,10 @@
 - boundary-only-at-boundary: FAIL
 - concrete-inputs: FAIL
 - no-invented-interface: FAIL
+- scenarios-traceable: FAIL
 - xa-principal-from-auth: FAIL
 - xa-limit-and-duplicate-placed-below: FAIL
 
 public-contract-decided は、この資料が今の条件より前の入口で作られ、操作ごとに返す Code と再試行の可否を決めた節が無い（「再試行」の語が一度も現れない）ので FAIL とした。
+
+scenarios-traceable は、この資料が今の条件より前の入口で作られ、シナリオの識別子が `FU-01` の形で、BDD の見出しの形でも Given、When、Then の形でもないので FAIL とした。

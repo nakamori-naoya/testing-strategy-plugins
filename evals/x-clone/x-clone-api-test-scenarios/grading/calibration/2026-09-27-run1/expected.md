@@ -12,6 +12,7 @@
 - no-invented-interface: FAIL（境目）
 - hypothesis-marked: PASS
 - owner-not-rewritten: PASS
+- scenarios-traceable: FAIL
 - shape-headings: PASS
 - grill-only-outcome-changing: PASS
 - xa-principal-from-auth: PASS
@@ -25,3 +26,5 @@ no-invented-interface は、冒頭で定義もコードも無いと断ったう�
 xa-reflection-request-observed は、成功で反映の要求が積まれることを FR-01（永続化）で確かめ、拒否で積まれないことを、重複のフォローと、フォローしていない相手の解除の後に反映の要求が1件のままであることで確かめているので PASS とした。条件は、要求が積まれたかを境界で見ることも、永続化のレベルへ送ることも認める。
 
 public-contract-decided は、この資料が今の条件より前の入口で作られ、操作ごとに返す Code と再試行の可否を決めた節が無い（「再試行」の語が一度も現れない）ので FAIL とした。
+
+scenarios-traceable は、この資料が今の条件より前の入口で作られ、シナリオの識別子が `FU-01` の形で、BDD の見出しの形でも Given、When、Then の形でもないので FAIL とした。
