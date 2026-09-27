@@ -41,7 +41,7 @@ description: 確定済みテスト戦略と業務の資料から、一つの業�
 
 ## 保存する
 
-本文を `material: [{kind: text, content: <本文>}]` として、`document_destination` と `references` とともに `write-doc` へ渡す。保存した資料を読み戻し、実装者がこの資料だけから、受け入れテストの要求と期待する Code を書けるかを確かめる。足りなければ直し、直せない不足は未決として残して `status` を `unresolved` にする。
+本文を `material: [{kind: text, content: <本文>}]` として、`document_type: api-test-scenarios`、`document_destination`、`references` とともに `write-doc` へ渡す。節の構成と、検査が読む目印（シナリオの見出しと gherkin のブロック、Code の表の見出し行）は、その型のテンプレートに従う。保存した資料を読み戻し、実装者がこの資料だけから、受け入れテストの要求と期待する Code を書けるかを確かめる。足りなければ直し、直せない不足は未決として残して `status` を `unresolved` にする。
 
 ## 止まるとき
 
