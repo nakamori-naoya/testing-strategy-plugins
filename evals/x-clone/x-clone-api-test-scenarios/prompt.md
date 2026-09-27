@@ -1,5 +1,5 @@
 ---
-description: X のクローンの対象リポジトリと、固定の材料にした確定済みのテスト戦略を渡し、プログラム境界のテストシナリオ（design-api-test-scenarios） を作らせる。grill の問いには実行者が資料の事実で答える。
+description: X のクローンの対象リポジトリと、固定の材料にした確定済みのテスト戦略を渡し、フォローの業務の API テストシナリオ（design-api-test-scenarios）を作らせる。grill の問いには実行者が資料の事実で答える。
 tags: [x-clone, api-test-scenarios]
 plugins: ["../../../plugins/testing-strategy"]
 max_turns: 200
@@ -7,13 +7,13 @@ timeout_seconds: 3600
 allowed_tools: [Read, Glob, Grep, Skill, TodoWrite, Write, Edit, Bash]
 ---
 
-X のクローン（X に似た SNS）のバックエンドについて、プログラム境界のテストシナリオ（design-api-test-scenarios） の資料を作ってください。
+X のクローン（X に似た SNS）のバックエンドについて、フォローの業務の API テストシナリオ（design-api-test-scenarios）の資料を作ってください。
 
 ## 入力
 
 - target_repository：作業場所の `target-repo/`（絶対パスは `pwd` で確かめて渡してください）。要件（`docs/requirements/`）と、業務知識・コマンドデータモデル・クエリデータモデル・ユーザージャーニー（`docs/design/`）だけがある git repository で、コード、テスト、インターフェース定義はまだありません。
 - test_strategy_path：作業場所の `test-strategy/test-strategy.md`（確定済みのテスト戦略）。
-- request と scope：フォローする、フォローを外すの二つのプログラム境界（公開 API）について、どの具体例をどのレベルとサイズで確かめ、何を別のレベルへ重ねないかを決めたい。scope はこの二つの境界と、その変更に伴う非同期の反映の要求まで。
+- request と scope：フォローの業務が公開する操作の契約を決め、どの具体例をどのレベルとサイズで確かめ、何を別のレベルへ重ねないかを決めたい。scope は、フォローする、フォローを外すの二つの操作と、その変更に伴う非同期の反映の要求まで。
 - references：ありません。
 - document_destination：`{output_directory: <作業場所の絶対パス>/out, name: api-test-scenarios.md}`。資料は `out/api-test-scenarios.md` に保存されます。
 

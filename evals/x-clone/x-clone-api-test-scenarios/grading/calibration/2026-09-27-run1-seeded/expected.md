@@ -6,8 +6,11 @@
 
 ## 判定
 
+- public-contract-decided: FAIL
 - boundary-only-at-boundary: FAIL
 - concrete-inputs: FAIL
 - no-invented-interface: FAIL
 - xa-principal-from-auth: FAIL
 - xa-limit-and-duplicate-placed-below: FAIL
+
+public-contract-decided は、この資料が今の条件より前の入口で作られ、操作ごとに返す Code と再試行の可否を決めた節が無い（「再試行」の語が一度も現れない）ので FAIL とした。
