@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: x-clone-e2e-test-scenarios
+context:
+  scaffold_script: scaffold.sh
