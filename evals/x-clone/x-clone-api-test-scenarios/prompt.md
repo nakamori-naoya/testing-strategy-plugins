@@ -13,6 +13,7 @@ X のクローン（X に似た SNS）のバックエンドについて、フォ
 
 - target_repository：作業場所の `target-repo/`（絶対パスは `pwd` で確かめて渡してください）。要件（`docs/requirements/`）と、業務知識・コマンドデータモデル・クエリデータモデル・ユーザージャーニー（`docs/design/`）だけがある git repository で、コード、テスト、インターフェース定義はまだありません。
 - test_strategy_path：作業場所の `test-strategy/test-strategy.md`（確定済みのテスト戦略）。
+- crosscutting_design_path：作業場所の `target-repo/docs/design/横断的関心事の設計.md`。
 - request と scope：フォローの業務が公開する操作の契約を決め、どの具体例をどのレベルとサイズで確かめ、何を別のレベルへ重ねないかを決めたい。scope は、フォローする、フォローを外すの二つの操作と、その変更に伴う非同期の反映の要求まで。
 - references：ありません。
 - document_destination：`{output_directory: <作業場所の絶対パス>/out, name: api-test-scenarios.md}`。資料は `out/api-test-scenarios.md` に保存されます。
