@@ -16,12 +16,12 @@
 - grill-only-outcome-changing: PASS
 - xa-principal-from-auth: PASS
 - xa-limit-and-duplicate-placed-below: PASS
-- xa-reflection-request-observed: FAIL
+- xa-reflection-request-observed: PASS
 
 ## 理由
 
 no-invented-interface は、冒頭で定義もコードも無いと断ったうえで、`followee_user_id` のような wire の項目名、`UNAUTHENTICATED` や `USER_NOT_REGISTERED` のような失敗の表現を、仮説の番号を付けずにシナリオの期待結果として使っているので FAIL とした。項目名はコマンドデータモデルの列名から取れること、冒頭の断りが全体に掛かると読めることから、境目とした。
 
-xa-reflection-request-observed は、成功の副作用は FR-01 で観測しているが、拒否（FU-02〜04、UF-02〜03）で反映の要求が積まれないことを、どのシナリオも観測していないので FAIL とした。
+xa-reflection-request-observed は、成功で反映の要求が積まれることを FR-01（永続化）で確かめ、拒否で積まれないことを、重複のフォローと、フォローしていない相手の解除の後に反映の要求が1件のままであることで確かめているので PASS とした。条件は、要求が積まれたかを境界で見ることも、永続化のレベルへ送ることも認める。
 
 public-contract-decided は、この資料が今の条件より前の入口で作られ、操作ごとに返す Code と再試行の可否を決めた節が無い（「再試行」の語が一度も現れない）ので FAIL とした。
